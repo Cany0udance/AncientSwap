@@ -129,6 +129,7 @@ public class AncientSwapOptionPatch
     private static RelicModel SelectRandomAncientRelic(Neow neow)
     {
         List<RelicModel> allAncientRelics = ModelDb.AllAncients
+            .Where(ancient => ancient is not Neow)
             .SelectMany(ancient => ancient.AllPossibleOptions)
             .Select(option => option.Relic?.CanonicalInstance)
             .OfType<RelicModel>()
